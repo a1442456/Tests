@@ -1,0 +1,107 @@
+﻿body {
+    background-color: #ffffff;    
+    font-family: "Courier New";
+    font-size: 18px;    
+}
+
+td {  
+    background-color: #dbdbdb;  
+    border-width: 0px;
+    border-color: red;
+    border-style: solid;
+    border-radius: 3px;
+    
+}
+
+table.main tr {
+    text-align:center;
+}
+
+table.main {
+    width:100%;
+    border-width: 0px;   
+    color: black;
+    
+
+}
+
+input[type=text] {
+    border-radius: 3px; 
+    font-family: "Courier New";
+    font-size:18px;
+}
+ input[type=password] {
+    border-radius: 3px; 
+    font-size:18px;
+}
+
+input[type=submit] {
+    
+    color: black;
+    width: 150px;
+    border-radius: 8px;    
+    font-family: "Courier New";    
+    border:none;   
+    font-size:18px;
+    background-color:#a6c5ae; 
+}
+
+input[type=submit]:hover {
+    background-color: #a7bbaa; 
+    
+}
+
+ul a {   
+   color: black;
+   text-decoration: none;
+   display: block;
+   width: 180px;
+   height: 25px;
+   line-height:23px;
+   border:none;
+}
+
+ul {
+   list-style: none;   
+   margin: 0;   
+   border-width: 0px;
+   
+   
+}
+
+ul.mbheader li {
+text-align: center;
+background-color: #dcdcdc;
+height: 25px;
+width: 180px;
+position: relative;
+float: left;
+margin-left: 5px; 
+color: black;
+border-spacing: 10px;
+border-width: 3px;
+border-style: groove;
+border-radius: 15px;
+}
+
+ul.mbheader li ul {
+display: none;
+}
+
+ul.mbheader li:hover {
+background-color: #a7bbaa;
+}
+
+ul.mbheader li:hover .mbsub {
+display: block;
+}      
+
+select {
+     border-radius: 3px; 
+     font-family: "Courier New";
+     width:150px;
+     font-size:18px;
+}
+p.Logo {
+    font-family:"Old Standard TT";
+}

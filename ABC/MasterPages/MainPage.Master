@@ -1,0 +1,148 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainPage.master.cs" Inherits="ABC.MasterPages.MainPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">   
+
+     <title>ABC tests</title> 
+       
+        <%
+            lnkStyles.Href = "..\\styles\\SkyBlue.css";
+
+
+            foreach (string name in Request.Cookies)
+            {
+                try
+                {
+                    if (Request.Cookies.Get("ChoosedStyle").Value == "Gray")
+                    {
+                        lnkStyles.Href = "..\\styles\\Gray.css";
+                    }
+                }
+                
+                catch(NullReferenceException)
+                {
+                }
+                
+            }
+        %>
+    <link id="lnkStyles" rel="stylesheet" type="text/css" />
+        
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+    <%
+    MembershipUser currentUser = Membership.GetUser(); 
+          if (currentUser != null) 
+          { 
+              if (currentUser.IsOnline) 
+                { 
+                  tblGreetings.Visible = true; 
+                } 
+          } 
+          else 
+          { 
+              tblLogin.Visible = true; 
+          } 
+          if (Roles.IsUserInRole("Admin")) 
+          { 
+              liAdmin.Visible = true; 
+          }%>
+<asp:Table ID="tblMain" runat="server" CssClass="main" >
+        <asp:TableRow>
+            <asp:TableCell Width ="10%" >                
+                <p class="Logo">
+                    ABC
+                </p>
+            </asp:TableCell>
+            <asp:TableCell Width ="65%" >
+                 <asp:ContentPlaceHolder ID="cphGreetings" runat="server"></asp:ContentPlaceHolder>
+            </asp:TableCell>
+            <asp:TableCell Width ="25%">
+                <asp:Table ID="tblLogin" runat="server" Visible="false">
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:Label ID="lblLogin" runat="server" Text="Login"></asp:Label>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtbxLogin" runat="server"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:Label ID="lblPassword" runat="server" Text="Password" ></asp:Label>
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:TextBox ID="txtbxPassword" runat="server" TextMode="Password"></asp:TextBox>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:Button ID="btnLogin" runat="server" Text="Log in" OnClick="btnLogin_Click"/>
+                        </asp:TableCell>
+                        <asp:TableCell> 
+                            <asp:button text="Registration" ID="btnRegistration" runat="server" OnClick="btnRegistration_Click"/>
+                        </asp:TableCell>                           
+                    </asp:TableRow>
+                </asp:Table>
+
+                <asp:Table ID="tblGreetings" runat="server" Visible="false">
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:Label ID="lblGreeting" runat="server"></asp:Label>                            
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:Label ID="lblUserName" runat="server"></asp:Label>
+                        </asp:TableCell>
+                    </asp:TableRow>
+                    <asp:TableRow>
+                        <asp:TableCell>
+                            <asp:Button ID="btnProfile" runat="server" Text="Profile" OnClick="btnProfile_Click" />
+                        </asp:TableCell>
+                        <asp:TableCell>
+                            <asp:Button ID="btnLogOut" runat="server" Text="Log Out" OnClick="btnLogOut_Click" />
+                        </asp:TableCell>
+                    </asp:TableRow>
+                </asp:Table>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow>
+            <asp:TableCell ColumnSpan="3">
+                <ul class="mbheader">
+                            <li><a href="../others/StartPage.aspx">Main</a></li>
+                            <li><a href="../Users/ChooseTest.aspx">Start test</a></li>
+                            <li><a>About us</a>
+                                <ul class="mbsub">
+                                    <li><a href="../others/Contacts.aspx">Contacts</a></li>
+                                    <li><a href="../others/AboutUs.aspx">Information</a></li>
+                                </ul>
+                            </li>                            
+                            <li id="liAdmin" runat="server" visible="false"><a href="../Admins/AddingTestPage.aspx">Admin Page</a></li>
+                        </ul>
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow CssClass="content" >
+            <asp:TableCell ColumnSpan="4" Height="500px" VerticalAlign="Top" HorizontalAlign="Center" BackColor="#ffffff"> 
+                
+                    <asp:ContentPlaceHolder ID="cphMain" runat="server"></asp:ContentPlaceHolder>
+                     
+                
+            </asp:TableCell>
+        </asp:TableRow>
+
+        <asp:TableRow>
+            <asp:TableCell ColumnSpan="4">
+                Bottom is here
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
+            </div>
+        </form>
+    </body>
+</html>
