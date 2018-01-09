@@ -70,27 +70,23 @@ namespace ABC
 
         private Color GetColorForResult(double result)
         {
-            Color clr = new Color();
-
             if (result < 20)
             {
-                 clr = Color.Red; // use retun instead local variable
+                 return Color.Red; // use retun instead local variable
             }
             else if (result < 50)
             {
-                clr = Color.Orange;
+                return Color.Orange;
             }
             else if (result < 70)
             {
-                clr = Color.LightGreen;
+                return Color.LightGreen;
             }
 
-            else if (result <= 100)
+            else
             {
-                clr = Color.Green;
+                return Color.Green;
             }
-
-            return clr;
         }
 
         private void ConfigureCellColor(double result, TableCell tCell)
